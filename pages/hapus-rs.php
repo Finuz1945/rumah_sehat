@@ -1,5 +1,5 @@
 <?php
-include './pages/koneksi.php';
+include 'koneksi.php';
 $id=$_GET['id'];
 
 mysqli_query($db,"DELETE FROM rs WHERE id_rs='$id'");
