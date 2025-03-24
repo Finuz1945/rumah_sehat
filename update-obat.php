@@ -2,12 +2,12 @@
 session_start();
 include './pages/koneksi.php';
 
-$id= $_GET['id'];
-$kode=mysqli_query($db,"SELECT * FROM obat WHERE id_obat='$id'");
-$data=mysqli_fetch_assoc($kode);
-if(empty($data['foto'])or($data['foto']=='-')) {
+$id = $_GET['id'];
+$kode = mysqli_query($db, "SELECT * FROM obat WHERE id_obat='$id'");
+$data = mysqli_fetch_assoc($kode);
+if (empty($data['foto']) or ($data['foto'] == '-')) {
     $foto = "image-comingsoon.jpeg";
-}else{
+} else {
     $foto = $data['foto'];
 }
 ?>
@@ -29,8 +29,11 @@ if(empty($data['foto'])or($data['foto']=='-')) {
     <div class="logo">
        <a href="dokter.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <?php if (isset($_SESSION['status'])){?>
-        <nav class="nav-list">
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <?php if (isset($_SESSION['status'])) {?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="dokter.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -39,7 +42,7 @@ if(empty($data['foto'])or($data['foto']=='-')) {
                 <li><a href="./pages/logout.php" onclick="alert('Anda Berhasil Logout!')">Logout</a></li>
             </ul>
         </nav>
-        <?php } else{ ?>
+        <?php } else { ?>
         <nav class="nav-list">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
@@ -105,5 +108,6 @@ if(empty($data['foto'])or($data['foto']=='-')) {
       </div>
 </footer>
   <!-- End Footer  -->
+  <script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

@@ -2,9 +2,9 @@
 session_start();
 include './pages/koneksi.php';
 
-$id= $_GET['id'];
-$kode=mysqli_query($db,"SELECT * FROM rs WHERE id_rs='$id'");
-$data=mysqli_fetch_assoc($kode);
+$id = $_GET['id'];
+$kode = mysqli_query($db, "SELECT * FROM rs WHERE id_rs='$id'");
+$data = mysqli_fetch_assoc($kode);
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +24,11 @@ $data=mysqli_fetch_assoc($kode);
     <div class="logo">
        <a href="index.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <?php if (isset($_SESSION['status'])){?>
-        <nav class="nav-list">
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <?php if (isset($_SESSION['status'])) {?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -34,8 +37,8 @@ $data=mysqli_fetch_assoc($kode);
                 <li><a href="./pages/logout.php" onclick="alert('Anda Berhasil Logout!')">Logout</a></li>
             </ul>
         </nav>
-        <?php } else{ ?>
-        <nav class="nav-list">
+        <?php } else { ?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -72,11 +75,11 @@ $data=mysqli_fetch_assoc($kode);
             <label for="pilih_jam">
                 <span>Pilih jam</span>
                 <select name="pilih_jam" id="pilih_jam" class="goldar">
-                <?php if ($data['janji_rs'] == "Umum"){?>
+                <?php if ($data['janji_rs'] == "Umum") {?>
                         <option <?php echo $data['pilih_jam'] == '09.00 - 10.00' ? 'selected' : ''; ?>>09.00 - 10.00</option>
                         <option <?php echo $data['pilih_jam'] == '14.00 - 15.00' ? 'selected' : ''; ?>>14.00 - 15.00</option>
                         <option <?php echo $data['pilih_jam'] == '19.00 - 20.00' ? 'selected' : ''; ?>>19.00 - 20.00</option>
-                    <?php } else{ ?>
+                    <?php } else { ?>
                         <option <?php echo $data['pilih_jam'] == '08.00 - 09.00' ? 'selected' : ''; ?>>08.00 - 09.00</option>
                         <option <?php echo $data['pilih_jam'] == '12.00 - 13.00' ? 'selected' : ''; ?>>12.00 - 13.00</option>
                         <option <?php echo $data['pilih_jam'] == '17.00 - 18.00' ? 'selected' : ''; ?>>17.00 - 18.00</option>
@@ -98,13 +101,14 @@ $data=mysqli_fetch_assoc($kode);
     <div class="social-media">
         <p>Follow kami di :</p>
         <ul>
-          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="www.linkedin.com/in/firdaus-nuzula-nur-rosyid-228114166" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/Finuz1945" aria-label="github"><i class="fab fa-github"></i></a></li>
         </ul>
       </div>
 </footer>
-  <!-- End Footer  -->
+<!-- End Footer  -->
+<script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

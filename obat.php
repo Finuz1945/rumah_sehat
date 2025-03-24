@@ -24,8 +24,11 @@ require './pages/functions-obat.php';
     <div class="logo">
        <a href="index.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <?php if (isset($_SESSION['status'])){?>
-        <nav class="nav-list">
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <?php if (isset($_SESSION['status'])) {?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -34,8 +37,8 @@ require './pages/functions-obat.php';
                 <li><a href="./pages/logout.php" onclick="alert('Anda Berhasil Logout!')">Logout</a></li>
             </ul>
         </nav>
-        <?php } else{ ?>
-        <nav class="nav-list">
+        <?php } else { ?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -62,23 +65,23 @@ require './pages/functions-obat.php';
     <div class="display-container" id="display-container">
             <?php
             $batas = 5;
-		    $halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
-		    $halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;	
+$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+$halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-		    $data = mysqli_query($db,"SELECT * FROM obat");
-		    $jumlah_data = mysqli_num_rows($data);
-		    $total_halaman = ceil($jumlah_data / $batas);
-            if ($jumlah_data > 0) {    
-				$data_janji = query("SELECT * FROM obat limit $halaman_awal, $batas");
-            if (isset($_POST['search'])) {
-                $data_janji = search($_POST['keyword']);
-            } 
-			foreach ($data_janji as $d) {
-                if(empty($d['foto'])or($d['foto']=='-')){
-                    $foto = "image-comingsoon.jpeg";
-                }else{
-                    $foto = $d['foto'];
-                } ?>
+$data = mysqli_query($db, "SELECT * FROM obat");
+$jumlah_data = mysqli_num_rows($data);
+$total_halaman = ceil($jumlah_data / $batas);
+if ($jumlah_data > 0) {
+    $data_janji = query("SELECT * FROM obat limit $halaman_awal, $batas");
+    if (isset($_POST['search'])) {
+        $data_janji = search($_POST['keyword']);
+    }
+    foreach ($data_janji as $d) {
+        if (empty($d['foto']) or ($d['foto'] == '-')) {
+            $foto = "image-comingsoon.jpeg";
+        } else {
+            $foto = $d['foto'];
+        } ?>
         <div class="card-obat">
             <div class="head-obat">
                     <img src="./src/<?php echo $foto; ?>" width=70px height=70px>
@@ -92,11 +95,11 @@ require './pages/functions-obat.php';
         </div>	
 		<?php } ?>
     </div>
-    <?php } else{
+    <?php } else {
         echo "<p>Data Obat Tidak Ditemukan</p>";
     } ?>
     <nav class="page-container">
-        <?php for($x=1;$x<=$total_halaman;$x++){ ?> 
+        <?php for ($x = 1;$x <= $total_halaman;$x++) { ?> 
 		<a class="page" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a>
 	<?php } ?>
     </nav>
@@ -109,13 +112,14 @@ require './pages/functions-obat.php';
     <div class="social-media">
         <p>Follow kami di :</p>
         <ul>
-          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="www.linkedin.com/in/firdaus-nuzula-nur-rosyid-228114166" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/Finuz1945" aria-label="github"><i class="fab fa-github"></i></a></li>
         </ul>
       </div>
 </footer>
-  <!-- End Footer  -->
+<!-- End Footer  -->
+<script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

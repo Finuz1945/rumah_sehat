@@ -15,7 +15,12 @@
     <div class="logo">
        <a href="index.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <nav class="nav-list">
+
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <nav class="nav-list"  id="navList">
         <ul>
             <li><a href="index.php">Beranda</a></li>
             <li><a href="#">Artikel</a></li>

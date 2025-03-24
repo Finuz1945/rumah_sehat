@@ -22,7 +22,10 @@ require './pages/functions-rs.php';
     <div class="logo">
        <a href="dokter.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <nav class="nav-list">
+    <button class="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <nav class="nav-list" id="navList">
         <ul>
             <li><a href="dokter.php">Obat</a></li>
             <li><a href="dokter-rs.php">Janji RS</a></li>
@@ -58,22 +61,22 @@ require './pages/functions-rs.php';
       </thead>
       <tbody>
       <?php
-				$batas = 5;
-				$halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
-				$halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;	
-        
-				$data = mysqli_query($db,"SELECT * FROM rs");
-				$jumlah_data = mysqli_num_rows($data);
-				$total_halaman = ceil($jumlah_data / $batas);
-        if ($jumlah_data > 0) {    
-				$data_janji = query("SELECT * FROM rs limit $halaman_awal, $batas");
-        if (isset($_POST['search'])) {
+                $batas = 5;
+$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+$halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-          $data_janji = search($_POST['keyword']);
-         
-        } 
-				$nomor = $halaman_awal+1; 
-			foreach ($data_janji as $d) {
+$data = mysqli_query($db, "SELECT * FROM rs");
+$jumlah_data = mysqli_num_rows($data);
+$total_halaman = ceil($jumlah_data / $batas);
+if ($jumlah_data > 0) {
+    $data_janji = query("SELECT * FROM rs limit $halaman_awal, $batas");
+    if (isset($_POST['search'])) {
+
+        $data_janji = search($_POST['keyword']);
+
+    }
+    $nomor = $halaman_awal + 1;
+    foreach ($data_janji as $d) {
         ?>
         <tr>
             <td><?php echo $nomor++; ?></td>
@@ -84,12 +87,12 @@ require './pages/functions-rs.php';
         </tr>
 		<?php } ?>
         </tbody>
-        <?php } else{
-                echo "<tr><td colspan=6>Data Obat Tidak Ditemukan</td></tr>";
-          } ?>
+        <?php } else {
+            echo "<tr><td colspan=6>Data Obat Tidak Ditemukan</td></tr>";
+        } ?>
         </table>
       <nav class="page-container">
-      <?php for($x=1;$x<=$total_halaman;$x++){ ?> 
+      <?php for ($x = 1;$x <= $total_halaman;$x++) { ?> 
 				<a class="page" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a>
 			<?php } ?>
     </nav>
@@ -103,13 +106,14 @@ require './pages/functions-rs.php';
     <div class="social-media">
         <p>Follow kami di :</p>
         <ul>
-          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+          <li><a href="www.linkedin.com/in/firdaus-nuzula-nur-rosyid-228114166" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://github.com/Finuz1945" aria-label="github"><i class="fab fa-github"></i></a></li>
         </ul>
   </div>
 </footer>
 <!-- End Footer  -->
+<script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

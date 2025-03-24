@@ -2,11 +2,11 @@
 session_start();
 include './pages/koneksi.php';
 
-$kode=mysqli_query($db,"SELECT * FROM lab");
-$num=mysqli_num_rows($kode);
-$jmlh=$num+1;
-$waktu=date('dmy');
-$nounik="REG-".$waktu.-$jmlh;
+$kode = mysqli_query($db, "SELECT * FROM lab");
+$num = mysqli_num_rows($kode);
+$jmlh = $num + 1;
+$waktu = date('dmy');
+$nounik = "REG-".$waktu.-$jmlh;
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +26,11 @@ $nounik="REG-".$waktu.-$jmlh;
     <div class="logo">
        <a href="index.php"><img src="./src/Rumah Sehat.png" alt="logo"></a>
     </div>
-    <?php if (isset($_SESSION['status'])){?>
-        <nav class="nav-list">
+    <button class="menu-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    <?php if (isset($_SESSION['status'])) {?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -36,8 +39,8 @@ $nounik="REG-".$waktu.-$jmlh;
                 <li><a href="./pages/logout.php" onclick="alert('Anda Berhasil Logout!')">Logout</a></li>
             </ul>
         </nav>
-        <?php } else{ ?>
-        <nav class="nav-list">
+        <?php } else { ?>
+        <nav class="nav-list" id="navList">
             <ul>
                 <li><a href="index.php">Beranda</a></li>
                 <li><a href="#">Artikel</a></li>
@@ -95,13 +98,15 @@ $nounik="REG-".$waktu.-$jmlh;
     <div class="social-media">
         <p>Follow kami di :</p>
         <ul>
-          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="www.linkedin.com/in/firdaus-nuzula-nur-rosyid-228114166" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/Finuz1945" aria-label="github"><i class="fab fa-github"></i></a></li>
         </ul>
       </div>
 </footer>
   <!-- End Footer  -->
+  <script type="text/javascript" src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>
