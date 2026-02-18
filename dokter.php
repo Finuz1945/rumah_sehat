@@ -37,9 +37,8 @@ require './pages/functions-obat.php';
 
 <!-- Start Search -->
 <div class="search-container">
-    <form class="search" method="post">
-      <input class="search" type="search" placeholder="Search" name="keyword" id="keyword">
-      <button class="tambah" name="search" type="submit" id="search">Search</button>
+    <form class="search">
+      <input class="search" type="text" placeholder="Search" name="keyword" id="keyword" autocomplete="off">
     </form>
     <a href="obat-input.php" class="tambah">Tambah Obat</a>
 </div>
